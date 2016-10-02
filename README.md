@@ -20,12 +20,10 @@ Building the system from scratch was a significant challenge given the scale of 
 - A whole house PA system for TTS cues
 - 2 RFID keypads for access control
 
-This list adds up to over 200 “things” that the house needs to operate. In order to cope with complexity, I distributed the things across seven controllers (Arduinos) which are in physical proximity to the sensors/actuators. 
-
-This repository contains the public parts of the source tree. I have not yet opened all the code because I'm concerned of divulging PII information. If you are interested in access to the full code contact me on github.
+Today I have all these features implemented using a tiered Arduino & Raspberry Pi architecture. This repository contains the public parts of the source tree. I have not yet opened all the code because I'm concerned of divulging PII information. If you are interested in access to the full code contact me on github.
 
 In the meantime you can also check the following links
-* [Wiki page for the automation software](http://cat101.bitbucket.org/en/#!index.md)
+* [Wiki page for the automation software & hardware](http://cat101.bitbucket.org/en/#!index.md)
 * [Wiki page for the house construction (in spanish)](http://cat101.bitbucket.org/sp/#!index.md)
 * [Photos of the whole project](https://goo.gl/photos/PSqoa4BDfdnn28Vv8)
 
