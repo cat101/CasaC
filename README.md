@@ -23,8 +23,8 @@ Building the system from scratch was a significant challenge given the scale of 
 Today I have all these features implemented using a tiered Arduino & Raspberry Pi architecture. This repository contains the public parts of the source tree. I have not yet opened all the code because I'm concerned of divulging PII information. If you are interested in access to the full code contact me on github.
 
 In the meantime you can also check the following links
-* [Wiki page for the automation software & hardware](http://cat101.bitbucket.org/en/#!index.md)
-* [Wiki page for the house construction (in spanish)](http://cat101.bitbucket.org/sp/#!index.md)
+* [Wiki page for the automation software & hardware](https://cat101.bitbucket.io/en/#!index.md)
+* [Wiki page for the house construction (in spanish)](https://cat101.bitbucket.io/sp/#!index.md)
 * [Photos of the whole project](https://goo.gl/photos/PSqoa4BDfdnn28Vv8)
 
 
