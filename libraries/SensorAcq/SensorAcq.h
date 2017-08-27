@@ -8,7 +8,7 @@ struct sensorThreshold{
 	unsigned int s2open, s1open, bothclosed, shortc;
 };
 
-#define ACQ_MAX_SAMPLE_DELTA 20 //This parameter controls what is the maximun delta tolerated between to consecutive sampling (i.e. ignore loop readings if they are changing)
+#define ACQ_MAX_SAMPLE_DELTA 20 //This parameter controls what is the maximum delta tolerated between to consecutive sampling (i.e. ignore loop readings if they are changing)
 
 #define BITOP(arr,bit,op) ((arr)[(byte)((bit)>>3)] op ((byte)1<<((byte)(bit) & 7)))
 #define BIT_SET |=

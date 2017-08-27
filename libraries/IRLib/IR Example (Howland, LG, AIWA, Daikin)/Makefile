@@ -7,7 +7,7 @@ BOARD_SUB   = atmega328
 
 # MONITOR_PORT = /dev/tty.usbserial-A9U9LZFR
 #/dev/cu.usbserial-A9U9LZFR
-MONITOR_PORT = /dev/cu.usbserial-A9SVBT15
+MONITOR_PORT = /dev/cu.usbserial-A9QP5BZV
 # AVRDUDE_OPTS = -v
 # AVRDUDE_ARD_BAUDRATE = 115200
 

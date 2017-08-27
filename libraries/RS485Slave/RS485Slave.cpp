@@ -139,8 +139,8 @@ bool RS485Slave::processConnection(unsigned long timeout)
 				CMD=8 -> Set mode bits
 				    0:isSunIrradiating=false;
 				    1:isSleepTime=false;
-				    2:needNightimeLights=false; //This gets triggered before isDark
-				    3:isDark=false;
+				    2:needNightimeLightsOutside=false; //This gets triggered before needCourtesyLightsInside
+				    3:needCourtesyLightsInside=false;
 				    4:debugEnabled
 				    5:serviceModeEnabled
 				    6:mainsDown  --> We are running on UPS or backup power

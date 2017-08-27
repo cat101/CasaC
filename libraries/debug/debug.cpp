@@ -51,13 +51,13 @@ void initDebugger(unsigned long bauds)
 //   stackptr =  (uint8_t *)(SP);           // save value of stack pointer
 //   return 2048-((int) heapptr);
 // }
-extern int __heap_start, *__brkval;
+extern unsigned int __heap_start, *__brkval;
 int availableMemory() {
   // Read http://blog.wickeddevice.com/?p=359
-  DEBUG_PRINT_P("0 %d %d %d %d (0, BSS, Heap start, Heap end, Stack pointer, Total RAM)\n"
-    ,(int) __heap_start
-    ,(int) __brkval
-    ,(int) SP
+  DEBUG_PRINT_P("0 %u %u %u %u (0, BSS, Heap start, Heap end, Stack pointer, Total RAM)\n"
+    ,(unsigned int) __heap_start
+    ,(unsigned int) __brkval
+    ,(unsigned int) SP
     , RAMEND);
   return 0;
 }

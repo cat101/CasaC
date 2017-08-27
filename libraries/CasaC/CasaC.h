@@ -7,7 +7,7 @@
 SensorAcq sensors;
 
 unsigned int houseMode=0; //Status pushed by the master
-#define isDark(x)	(x & B1000)
+#define needCourtesyLightsInside(x)	(x & B1000)
 #define isSleepTime(x)	(x & B10)
 #define isMainsDown(x)	(x & B1000000)
 
@@ -153,10 +153,10 @@ void loop(){
    +---------------+      +---------------+            Type 1:RFID Event (size 4 bytes)                                            
                           | entry (31|24) | <-+        Type 2:Exception (followed by string)                         
    Ev 1:Trigger event     +---------------+   |        Type 5:Comm Debug (followed by Node ID and other data)        
-  S/R 1:Set or reset      | entry (23|16) |   |        Type 6:RF packet received (size 2 bytes)                                                              
+  S/R 1:Set or reset      | entry (23|16) |   |        Type 6:RF packet received (size 4 bytes)                                                              
   Out 6:bit to set        +---------------+   +--+ 5 digits BCD or                                                   
                           | entry (15| 8) |   |    26 bit RFID                                                       
-                          +---------------+   |                                                                      
+                          +---------------+   |    32 bit RF code                                                       
                       i+5 | entry ( 7| 0) |   |                                                                      
                           +---------------+ <-+                                                                      
 

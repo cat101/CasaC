@@ -1,3 +1,11 @@
+/*
+	To compile do
+	mv  /Users/fmcuenca/Documents/mov/CasaC/src/libraries/IRLib/IR\ Example\ \(Howland\,\ LG\,\ AIWA\,\ Daikin\)/ ir
+	mv ir /Users/fmcuenca/Documents/mov/CasaC/src/libraries/IRLib/IR\ Example\ \(Howland\,\ LG\,\ AIWA\,\ Daikin\)/
+	Then restore
+*/
+
+
 #include "config.h"
 #include "debug.h"
 #ifdef DEBUG_RS232_TX_PIN
@@ -138,7 +146,30 @@ void serialEvent()
 		    //http://lirc.sourceforge.net/remotes/aiwa/RC-TN330
 			IRAIWASender.send(0xB24D); //Vol up
 		break;
-
+	    case 'a': //Turn LED Lytes on
+			RS232Serial.print("Turn LED Lytes on\n");
+		    IRRawSender.sendGeneric(0xFE01B748, 32, 10000, 4500, 600, 600, 500, 1500, 38, true);
+		    break;
+	    case 'b': //Turn LED Lytes on
+			RS232Serial.print("Type 2 digit hex code for LED Lytes on\n");
+			char code[3];
+			byte c;
+			int incomingByte;
+			for(c=0;c<2;){				
+				incomingByte = RS232Serial.read();
+				if(incomingByte!=-1){
+					code[c] = incomingByte;
+					c++;
+				}
+			}
+			code[2]=0;
+			unsigned long data=strtoul((char *)code,NULL,16);
+			// RS232Serial.println((char *)code);
+			RS232Serial.println(data,DEC);
+			data=(0xFE01UL<<16) + (data<<8) + ((~data)&0xFF);
+			RS232Serial.println(data,DEC);
+		    IRRawSender.sendGeneric(data, 32, 10000, 4500, 600, 600, 500, 1500, 38, true);
+		    break;
 	}
 	if(inChar!='\n'){
 		RS232Serial.print("code sent ");

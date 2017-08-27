@@ -43,7 +43,7 @@ namespace Watchdog
   {  // The address in the eeprom where crash data is saved. The 
     // first byte is the number of records saved, followed by
     // the location for the next report to be saved, followed by
-    // the indivual CApplicationState records. 
+    // the individual CApplicationState records. 
     const int c_nBaseAddress;
 
     // The maximum number of crash entries stored in the eeprom. 

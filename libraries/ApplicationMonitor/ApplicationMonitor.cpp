@@ -129,7 +129,7 @@ void CApplicationMonitor::Dump(void) const
 //     rDestination.println();
 // }
 
-void CApplicationMonitor::WatchdogInterruptHandler(uint8_t *puProgramAddress)
+void __attribute__ ((noinline)) CApplicationMonitor::WatchdogInterruptHandler(uint8_t *puProgramAddress)
 {
   CApplicationMonitorHeader Header;
 

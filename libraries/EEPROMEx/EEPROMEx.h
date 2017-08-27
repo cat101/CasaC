@@ -116,7 +116,7 @@ class EEPROMClassEx
 		return sizeof(value);
 	}
 
-	template <class T> int updateBlock(int address, const T value[], int items)
+	template <class T> int updateBlock(int address, const T value[], unsigned int items)
 	{
 		int writeCount=0;
 		if (!isWriteOk(address+items*sizeof(T))) return 0;

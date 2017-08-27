@@ -150,7 +150,7 @@ class HashMap
     */
     unsigned int indexOf(K key)
     {
-      for (int i = 0; i < currentIndex; i++)
+      for (unsigned int i = 0; i < currentIndex; i++)
       {
         if (cb_comparator)
         {
@@ -181,7 +181,7 @@ class HashMap
     */
     bool contains(K key)
     {
-      for (int i = 0; i < currentIndex; i++)
+      for (unsigned int i = 0; i < currentIndex; i++)
       {
         if (cb_comparator)
         {
@@ -213,7 +213,7 @@ class HashMap
       int index = indexOf(key);
       if (index!=-1)
       {
-        for (int i = index; i < capacity - 1; i++)
+        for (unsigned int i = index; i < capacity - 1; i++)
         {
           keys[i] = keys[i + 1];
           values[i] = values[i + 1];
@@ -236,7 +236,7 @@ class HashMap
     K keys[capacity];
     V values[capacity];
     V nil;
-    int currentIndex;
+    unsigned int currentIndex;
     comparator cb_comparator;
 };
 

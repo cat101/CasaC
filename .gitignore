@@ -37,3 +37,28 @@
 
 # Mac files
 .DS_Store
+
+# Private files
+.hg
+.hgignore
+.hgtags
+deployment.log
+make.pl
+Makefile
+Makefile.common
+_private
+Apps
+ClimateControl
+Cocina
+config_h
+Frente
+Jardin
+libraries/AudioController
+Living
+PA_Este
+PA_Oeste
+PA_Oeste_Nano
+ResourcePreprocesor
+SS
+Techo
+TransferSwitch

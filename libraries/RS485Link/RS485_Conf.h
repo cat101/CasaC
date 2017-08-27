@@ -25,7 +25,7 @@
 #define RS485CMD_COLLECT_SENSOR_EXTENDED 5
 #define RS485CMD_WRITENLOAD_CONFIG 6
 #define RS485CMD_TIMED_OUTPUT 7
-#define RS485CMD_SET_MODE 8 // Used to set mode bits (isDark, Service, Debug, etc)
+#define RS485CMD_SET_MODE 8 // Used to set mode bits (needCourtesyLightsInside, Service, Debug, etc)
 #define RS485CMD_SEND_SURROGATE_CMD 9 // Send a command (text string) to a surrogate via a slave
 #define RS485CMD_COMM_CHECK 240
 // #define RS485CMD_SERVICE_MODE 241 deprecated by RS485CMD_SET_MODE
