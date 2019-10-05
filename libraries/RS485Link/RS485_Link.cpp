@@ -92,6 +92,11 @@ void sendMsgPart (const byte * data, const byte length, bool closeMsg)
 	}  
 }
 
+void emptyRxChannel(){
+	while(RS485SERIAL.available()){
+		RS485SERIAL.read();
+	}
+}
 
 // receive a message, maximum "length" bytes, timeout after "timeout" milliseconds
 // if nothing received, or an error (eg. bad CRC, bad data) return 0
@@ -149,6 +154,7 @@ byte recvMsg (
 						#ifndef DISABLE_COMM_ERRORS
 							DEBUG_B_PRINT_P("Got a Bad character (pos %u, char 0x%02hx, target node %hu)\n",input_pos+overflow_pos,inByte, (preLen>0)?prefix[0]:data[0]);
 							logException_P("Bad character");
+							// logException_P("Bad character N%hu",(preLen>0)?prefix[0]:data[0]);
 						#endif
 						lastRS485Error=RS485_ERR_BADCHAR;
 						lastRS485ProcessedChar=input_pos+overflow_pos;

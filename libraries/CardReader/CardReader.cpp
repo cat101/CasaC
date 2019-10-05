@@ -187,7 +187,7 @@ void CardReader::lockDoor() {
 
 void CardReader::unlockDoor() {
   DEBUG_PRINT_P("READER_OPENDOOR_EV\n");
-  sensors.disableAnalog=true; //Prevent faulty analog readings due to the current drawn by the door strike
+  sensors.disableAnalog=true; //Prevent faulty analog readings due to the current drawn by the door strike/lock
   setLED(true);
   setLock(true);
   timer.setTimeout(CARD_DOOR_UNLOCK_TIME, lockDoorWrapper);

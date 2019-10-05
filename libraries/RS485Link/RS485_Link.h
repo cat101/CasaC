@@ -19,6 +19,7 @@ byte recvMsg (
               );
 
 void dumpMsg(byte * data, const byte dataLen);
+void emptyRxChannel();
 
 #define RS485_ERR_BADCHAR 0
 #define RS485_ERR_CRC 1

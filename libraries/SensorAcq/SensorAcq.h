@@ -54,6 +54,7 @@ public:
 
 	bool serviceMode; // If true it disables dispatching
 	bool disableAnalog; //If true analog sampling is disabled (used to mask noise)
+	bool (*digitalWriteCallback)(byte pin, byte val); //If this function pointer is set, then the function will be call before any IO. If the function returns false the the IO will be stop
 	void executeServiceMode(byte signal,byte value);
 
 	void begin(void);
@@ -68,7 +69,7 @@ public:
 	byte digitalRead(byte pin);
 
 private:
-	int *analogSamples; //This is used to easyly manage ADC samplings
+	int *analogSamples; //This is used to easily manage ADC samplings
 
 	byte lastSensor;
 	unsigned long lastSensorSample;

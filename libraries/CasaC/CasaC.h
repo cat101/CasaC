@@ -69,7 +69,8 @@ void p1loop(){
 			t_entry=millis();
 			// digitalWrite(6, HIGH);
 			DEBUG_BR_PRINT_P("Got a packet start (buffered %d)\n",RS485SERIAL.available());
-			//Allow at least 4m (RS485_MSGASSEMBLYTIME) to collect the whole package (if we finish faster the function will return)
+			// Allow at least 4m (RS485_MSGASSEMBLYTIME) to collect the whole package (if we finish faster the function will return)
+			// This call returns as soon as it finds that the message is not targeting this node
 			if(RS485comm.processConnection(RS485_MSGASSEMBLYTIME))	
 				nextSample=0; //Force a sample upon being polled. This tries to sync the cycles with the master so that slaves can be ready to answer on the next round  
 			// digitalWrite(6, LOW);
@@ -117,7 +118,7 @@ void p1loop(){
 		    	logException_P("Acq time %lums",millis()-t_acq);
 				DEBUG_PRINT_P("Comm & sample time %lu, extras sensors sample time %lu (budget 250ms)\n",t_acq-t_entry, millis()-t_acq);
 		    }
-			// Schedule the next sample
+			// Schedule the next sample (if the master contact us the sampling will happen immediately)
 			pass2Due=0;
 			nextSample = currentMillis + ACQ_SAMPLE_WATCHDOG;    
 		}

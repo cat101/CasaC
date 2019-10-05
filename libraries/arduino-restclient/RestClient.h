@@ -1,56 +1,54 @@
 #include <Arduino.h>
-#include <SPI.h>
-#include <Ethernet.h>
+#include "Client.h"
 
 class RestClient {
 
   public:
-    RestClient(const char* host);
-    RestClient(const char* _host, int _port);
-
-    //Client Setup
-    void dhcp();
-    int begin(byte*);
+    RestClient(const char* host, Client& client);
+    RestClient(const char* _host, int _port, Client& client);
 
     //Generic HTTP Request
     int request(const char* method, const char* path,
-                const char* body, String* response);
+                const char* body, char* response, int length);
+
     // Set a Request Header
-    void setHeader(const char*);
+    RestClient& setHeader(const char*);
     // Set Content-Type Header
-    void setContentType(const char*);
+    RestClient& setContentType(const char*);
+
+    RestClient& setClient(Client& client);
 
     // GET path
-    int get(const char*);
+    int get(const char* path);
     // GET path and response
-    int get(const char*, String*);
+    int get(const char* path, char* response, int length);
 
     // POST path and body
     int post(const char* path, const char* body);
     // POST path and body and response
-    int post(const char* path, const char* body, String*);
+    int post(const char* path, const char* body, char* response, int length);
 
     // PUT path and body
     int put(const char* path, const char* body);
     // PUT path and body and response
-    int put(const char* path, const char* body, String*);
+    int put(const char* path, const char* body, char* response, int length);
 
     // DELETE path
-    int del(const char*);
+    int del(const char* path);
     // DELETE path and body
-    int del(const char*, const char*);
+    int del(const char* path, const char* body);
     // DELETE path and response
-    int del(const char*, String*);
+    int del(const char* path, char* response, int length);
     // DELETE path and body and response
-    int del(const char*, const char*, String*);
+    int del(const char* path, const char*, char* response, int length);
 
   private:
-    EthernetClient client;
-    int readResponse(String*);
+    Client* client;
+    int readResponse(char* response, int length);
     void write(const char*);
     const char* host;
     int port;
     int num_headers;
     const char* headers[10];
-	const char* contentType;
+    const char* contentType;
 };

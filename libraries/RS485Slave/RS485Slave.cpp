@@ -86,19 +86,7 @@ bool RS485Slave::processConnection(unsigned long timeout)
 		if(cmd==RS485CMD_COLLECT_SENSOR || cmd==RS485CMD_COLLECT_SENSOR_EXTENDED){		
 			// CMD=4 -> Check status (basic)
 		    //digitalWrite(6, HIGH);
-		    if(received>2){
-		    	// Got some events from the master
-		    	for(byte i=2;i<received;i++){
-		    		if(!(buf[i] & B10000000)){
-				    	// Ignore if bit 8 is not 0. We have not implemented yet the ability to trigger events when an output is changed (part of the protocol)
-						DEBUG_PRINT_P("Got event: Output %hu, Value %hu (received %hu)\n", buf[i] & 0x3F, (buf[i] & 0x40)>>6,received-2);
-				    	// logException_P("OUT_N %hu %hu", buf[i] & 0x3F, (buf[i] & 0x40)>>6);
-				    	// if((buf[i] & 0x3F) == 0)
-				    	// 	continue; //Ignore luz tanque
-						sensors.digitalWrite(ACQ_OUT_RANGE_START+buf[i] & 0x3F, (buf[i] & 0x40)>>6);
-					}
-				}
-		    }
+			// Answer right away to not delay the Master
 			sendMsg (RS485MASTERID, cmd, sensors.digSamples, sizeof(sensors.digSamples)
 			+sizeof(sensors.senSamples)
 			+sizeof(sensors.errSamples)
@@ -113,6 +101,21 @@ bool RS485Slave::processConnection(unsigned long timeout)
 			    sendMsgPart (debugEv, sizeof(debugEv), false);
 			#endif
 			sendMsgPart (NULL, 0, true);
+
+		    if(received>2){
+		    	// Got some events from the master
+		    	for(byte i=2;i<received;i++){
+		    		if(!(buf[i] & B10000000)){
+				    	// Ignore if bit 8 is not 0. We have not implemented yet the ability to trigger events when an output is changed (part of the protocol)
+						DEBUG_PRINT_P("Got event: Output %hu, Value %hu (received %hu)\n", buf[i] & 0x3F, (buf[i] & 0x40)>>6,received-2);
+				    	// logException_P("OUT_N %hu %hu", buf[i] & 0x3F, (buf[i] & 0x40)>>6);
+				    	// if((buf[i] & 0x3F) == 0)
+				    	// 	continue; //Ignore luz tanque
+						sensors.digitalWrite(ACQ_OUT_RANGE_START+buf[i] & 0x3F, (buf[i] & 0x40)>>6);
+					}
+				}
+		    }
+		    
 			DEBUG_BR_PRINT_P("Sent data (cmd=%d) size %d\n", cmd,sizeof(sensors.digSamples)
 				+sizeof(sensors.senSamples)
 				+sizeof(sensors.errSamples)

@@ -20,6 +20,7 @@ void SensorAcq::begin(void){
 
 	serviceMode=false;
 	disableAnalog=false;
+	digitalWriteCallback=NULL;
 
 	// Configure all the output pins
 	byte c;
@@ -64,6 +65,12 @@ int SensorAcq::loadEECfg(int address){
 
 
 void SensorAcq::digitalWrite(byte pin, byte val){
+	//Check if we have a callback set
+	if(digitalWriteCallback!=NULL){
+		if(!digitalWriteCallback(pin, val)){
+			return; //If the callback returns false then we block the IO
+		}
+	}
 	if(!serviceMode){
 		// Update the internal variable that caches the output state
 		if(val==HIGH){
@@ -294,7 +301,7 @@ void SensorAcq::acquireSensors(void){
 			lastSensor=0;
 		}
 	}else{
-		acquireSensor(255); // Call the local hook to use an idle slot
+		acquireSensor(255); // Call the local hook to use an idle slot in between the analog sensors
 	}
 }
 
