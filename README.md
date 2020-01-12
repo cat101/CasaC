@@ -1,4 +1,5 @@
 # Welcome to La CasaC
+
 La CasaC is a comfortable, energy efficient, low maintenance and sustainable house. It is an ongoing project me and my wife started back in 2012. After three years of design and planning and two years of construction we moved in.
 
 When I started planning La CasaC I had two options: use commercial products like home automation controllers, security lighting, burglar alarm, etc. and then spend my time trying to integrate proprietary protocols or use Open Source hardware and software to build/integrate everything from scratch. Having suffered the commercial/closed approach with my previous house I decided to try the latter.
@@ -25,7 +26,7 @@ Today I have all these features implemented using a tiered Arduino & Raspberry P
 In the meantime you can also check the following links that document other aspects of the project
 
 * [Wiki page for the automation software & hardware](https://cat101.bitbucket.io/en/#!index.md)
-* [Wiki page for the house construction (in spanish)](https://cat101.bitbucket.io/sp/#!index.md)
+* [Wiki page for the house construction (in Spanish)](https://cat101.bitbucket.io/sp/#!index.md)
 * [Photos of the whole project](https://goo.gl/photos/PSqoa4BDfdnn28Vv8)
 * [RF to REST bridge](https://github.com/cat101/rf433-to-rest)
 * [Arduino Solar Water Heater Sensor](http://hack4life.pbworks.com/w/page/75653090/Arduino%20Solar%20Water%20Heater%20Sensor)
