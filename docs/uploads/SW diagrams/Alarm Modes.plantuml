@@ -1,0 +1,78 @@
+﻿
+@startuml "Alarm Modes.png"
+
+
+[*] --> LoadPreviousMode
+LoadPreviousMode --> Disarmed 
+LoadPreviousMode --> Away
+
+
+state Away {
+ [*] --> OnAwayEntry
+ Away : Exit / 
+ OnAwayEntry : alarmArmCommon()
+ OnAwayEntry : play ALARM_EXIT_PERIOD
+ OnAwayEntry : taskExitPeriod.start()
+ OnAwayEntry --> ExitPeriod
+ OnHolidayEntry --> OnAwayEntry 
+ OnHolidayEntry : Turn off AC, isHoliday & sched prescence simulation
+ ExitPeriod --> AwayMode : evTimer / enableAwayDistpatcher()
+ ExitPeriod --> Disarmed : EvDisarmCode, EvDisarmDuressCode
+ AwayMode --> AwayMode : evZoneOpen (not entry) or Tamper / triggerAlarm()
+ AwayMode --> AwayMode : evZoneOpen (entry) or Tamper / triggerEntryPeriod()
+}
+
+note bottom of AwayMode 
+ zoneOpen: Interior | Perimeter_All_year | Panic | Perimeter_winter
+ entry: PB_L02_I, PB_L04_I, PB_L03_M, PB_L06_M
+end note
+
+state Stay {
+ [*] --> OnStayEntry
+ OnStayEntry : alarmArmCommon()
+ OnStayEntry : Enable/disable winter zone
+ OnStayEntry --> StayMode : / Enable Stay dispatcher
+ StayMode --> StayMode : evZoneOpen/Tamper (not winter zone) / triggerEntryPeriod()
+ StayMode --> StayMode : evZoneOpen/Tamper (winter zone && isWinter) / triggerEntryPeriod()
+}
+StayMode --> Disarmed : EvDisarmCode
+StayMode  --> Disarmed : EvDisarmDuressCode / triggerDuress()
+AwayMode --> Disarmed : EvDisarmCode
+AwayMode --> Disarmed : EvDisarmDuressCode / triggerDuress()
+
+note top of Away
+ alarmArmCommon()
+ * record 60s from all cameras
+ * log arming user & duress
+ triggerEntryPeriod()
+ * record 60s from all cameras
+ * log trigger zone/reason
+ * scheduleTask(triggerAlarm())
+ triggerAlarm()
+ * record from all cameras while siren timer is on
+ * log trigger zone/reason
+ * Start siren timer & internal audio & external siren
+ * Start dialer. Dial alarm people and play message (star or away)
+end note
+
+state Disarmed {
+ [*] --> OnDisarmedEntry
+ OnDisarmedEntry : record 60s from all cameras
+ OnDisarmedEntry : Disable away & stay dispatchers
+ OnDisarmedEntry : log disarm user & duress
+ OnDisarmedEntry : stop arming sequence & countdown message
+ OnDisarmedEntry : stop siren timer & internal audio & external siren
+ OnDisarmedEntry : stop dialer service (if not duress)
+ OnDisarmedEntry : * if trigered notify everything is ok
+ OnDisarmedEntry --> DisarmedMode : / Enable Disarmed dispatcher
+ Disarmed --> Away : EvArmCodeAway
+ Disarmed --> OnHolidayEntry : EvArmCodeAwayHoliday
+ Disarmed --> Stay : EvArmCodeStay
+ Disarmed --> Disarmed : EvDisarmCode / stop duress & notify everything ok
+}
+note bottom of Disarmed
+ triggerDuress()
+ * dial duress people and play message
+end note
+
+@enduml

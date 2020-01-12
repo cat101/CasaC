@@ -1,0 +1,25 @@
+@startuml
+
+object ArrayOfWholeHouseMasks {
+   byte **zoneMasks[HS_NO_ZM]
+}
+
+object WholeHouseMask {
+ byte *Perimeter_All_yearMask[]
+}
+
+object NodeMask {
+ byte SS_S_Perimeter_All_yearMask[]
+}
+
+Note right of NodeMask
+ The mask spawns 
+ - digital inputs
+ - sensor inputs (analog converted to dig)
+ - error inputs (from the analog procesing)
+ - digital outputs
+End note
+
+ArrayOfWholeHouseMasks --> WholeHouseMask
+WholeHouseMask --> NodeMask
+@enduml

@@ -1,0 +1,17 @@
+- [http://www.cdecl.org/](http://www.cdecl.org/)
+- Documenting
+ - [PlantUML on-line editor](http://www.plantuml.com/plantuml/form)
+ - [http://www.asciiflow.com/](http://www.asciiflow.com/)
+ - [SlackEdit: Markdown editor](https://stackedit.io/editor#)
+ - [Markdown cheat-sheet](http://assemble.io/docs/Cheatsheet-Markdown.html)
+ - [MDWiki: dynamic MD rendering](https://github.com/Dynalon/mdwiki)
+ - [Couscous: static MD rendering](http://couscous.io/)
+ - [Embeddable markdown processor](http://strapdownjs.com/) 
+ - Start a local webserver "python -m SimpleHTTPServer 8000"
+   - The open http://localhost:8000/sp/index-offline.html
+- Creole references
+  - [http://www.wikicreole.org/wiki/Creole1.0](http://www.wikicreole.org/wiki/Creole1.0) 
+  - [http://scottboms.com/downloads/documentation/markdown\_cheatsheet.pdf](http://scottboms.com/downloads/documentation/markdown_cheatsheet.pdf) 
+    - Locally at ˜/Downloads/markdown_cheatsheet.pdf
+  - [http://creolec.sourceforge.net/creole\_cheat\_sheet.pdf](http://creolec.sourceforge.net/creole_cheat_sheet.pdf)
+- [Original bitbucket root page](Home Backup.md)

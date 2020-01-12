@@ -46,7 +46,7 @@ deployment.log
 make.pl
 Makefile
 Makefile.common
-_private
+_private*
 Apps
 ClimateControl
 Cocina
