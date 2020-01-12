@@ -25,8 +25,8 @@ Today I have all these features implemented using a tiered Arduino & Raspberry P
 
 In the meantime you can also check the following links that document other aspects of the project
 
-* [Wiki page for the automation software & hardware](https://cat101.bitbucket.io/en/#!index.md)
-* [Wiki page for the house construction (in Spanish)](https://cat101.bitbucket.io/sp/#!index.md)
+* [Wiki page for the automation software & hardware](https://cat101.github.io/CasaC/en/#!index.md)
+* [Wiki page for the house construction (in Spanish)](https://cat101.github.io/CasaC/sp/#!index.md)
 * [Photos of the whole project](https://goo.gl/photos/PSqoa4BDfdnn28Vv8)
 * [RF to REST bridge](https://github.com/cat101/rf433-to-rest)
 * [Arduino Solar Water Heater Sensor](http://hack4life.pbworks.com/w/page/75653090/Arduino%20Solar%20Water%20Heater%20Sensor)
