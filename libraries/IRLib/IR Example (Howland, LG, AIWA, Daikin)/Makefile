@@ -19,6 +19,4 @@ current_dir := $(notdir $(patsubst %/,%,$(dir $(mkfile_path))))
 include ../Makefile.common
 CPPFLAGS = -I$(ARDUINO_SKETCHBOOK)/$(current_dir) $(CSTYLE) $(COPTIMIZE) 
 
-### Path to where the your project's libraries are stored.
-ARDUINO_SKETCHBOOK := $(BASE_PATH)/src
 include /usr/local/opt/arduino-mk/Arduino.mk
